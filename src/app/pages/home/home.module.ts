@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from './home.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    FlexLayoutModule,
 
     MatCardModule,
     MatButtonModule,

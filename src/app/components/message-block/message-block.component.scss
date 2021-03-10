@@ -1,5 +1,13 @@
 
 ::ng-deep {
+  .message-block {
+    background-color: #f8f9fa;
+    margin-bottom: 10px;
+    .time {
+      margin-left: 10px;
+      color: #3f51b5;
+    }
+  }
   .mat-card-subtitle {
     font-size: 10px;
     margin-bottom: 5px;

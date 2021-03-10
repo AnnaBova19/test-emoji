@@ -1,0 +1,8 @@
+::ng-deep {
+  .mat-list-base {
+    padding-top: 0 !important;
+    .mat-list-item {
+      color: inherit;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-<mat-card class="bg-light mb-2">
+<mat-card class="message-block">
   <mat-card-header >
-    <mat-card-subtitle class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
+    <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between">
+      <div fxLayout="row" fxLayoutAlign="start center">
         <mat-icon color="primary">calendar_today</mat-icon>
-        <span class="text-primary ml-2">
+        <span class="time">
           {{ message.date | date: 'shortTime' }} |
           {{ message.date | date: 'mediumDate'}}
         </span>
