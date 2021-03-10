@@ -1,0 +1,41 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title class="d-flex justify-content-between">
+      <span>
+        Your Diary
+      </span>
+      <mat-icon color="primary">arrow_forward</mat-icon>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form novalidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Write something</mat-label>
+        <textarea 
+          matInput 
+          [formControl]="message"
+          cdkTextareaAutosize>
+        </textarea>
+      </mat-form-field>
+    </form>
+    <emoji-mart class="emoji-mart" 
+      *ngIf="isEmojiPickerVisible" 
+      (emojiSelect)="addEmoji($event)" 
+      title="Choose your emoji"
+      [showPreview]="false">
+    </emoji-mart>
+  </mat-card-content>
+  <mat-card-actions class="d-flex justify-content-between">
+    <button mat-icon-button color="primary" (click)="isEmojiPickerVisible = !isEmojiPickerVisible">
+      <mat-icon *ngIf="!isEmojiPickerVisible">mood</mat-icon>
+      <mat-icon *ngIf="isEmojiPickerVisible">keyboard</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </mat-card-actions>
+  <div *ngIf="messages.length" class="mt-3">
+    <app-message-block
+      *ngFor="let message of messages"
+      [message]="message"
+    ></app-message-block>
+  </div>
+</mat-card>

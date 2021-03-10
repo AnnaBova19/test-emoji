@@ -1,0 +1,12 @@
+
+::ng-deep {
+  .main-card {
+    height: 300px;
+    .mat-card-content {
+      height: calc(100% - 52px);
+    }
+    .mat-card-actions {
+      margin: 0;
+    }
+  }
+}
