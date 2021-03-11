@@ -16,6 +16,19 @@
           [formControl]="message"
           cdkTextareaAutosize>
         </textarea>
+        <div matSuffix fxLayout="row">
+          <button mat-icon-button color="primary" 
+            (click)="isEmojiPickerVisible = !isEmojiPickerVisible" 
+            [attr.aria-label]="'Hide emoji'">
+            <mat-icon>{{isEmojiPickerVisible ? 'keyboard' : 'mood'}}</mat-icon>
+          </button>
+          <button *ngIf="!isNewMessage" mat-icon-button color="primary" (click)="send()">
+            <mat-icon>send</mat-icon>
+          </button>
+          <button *ngIf="isNewMessage" mat-icon-button color="primary" (click)="update()">
+            <mat-icon>check</mat-icon>
+          </button>
+        </div>
       </mat-form-field>
     </form>
     <emoji-mart class="emoji-mart" 
@@ -25,17 +38,17 @@
       [showPreview]="false">
     </emoji-mart>
   </mat-card-content>
-  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
-    <button mat-icon-button color="primary" (click)="isEmojiPickerVisible = !isEmojiPickerVisible">
-      <mat-icon *ngIf="!isEmojiPickerVisible">mood</mat-icon>
-      <mat-icon *ngIf="isEmojiPickerVisible">keyboard</mat-icon>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="end" *ngIf="(messages | async)?.length">
+    <button mat-stroked-button color="primary" (click)="clear()">
+      Clear All Messages
     </button>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
   </mat-card-actions>
-  <div *ngIf="messages.length">
-    <app-message-block
-      *ngFor="let message of messages"
-      [message]="message"
-    ></app-message-block>
-  </div>
+</mat-card>
+
+<mat-card class="card" *ngIf="(messages | async)?.length">
+  <app-message-block
+    *ngFor="let message of messages | async"
+    [message]="message"
+    (editMessage)="onEditMessage($event)"
+  ></app-message-block>
 </mat-card>

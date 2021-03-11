@@ -17,4 +17,11 @@
       height: 14px;
     }
   }
+  .message-menu {
+    min-height: 30px;
+    .mat-menu-item {
+      height: 24px;
+      line-height: 24px;
+    }
+  }
 }

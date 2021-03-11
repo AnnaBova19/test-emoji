@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+import { Select, Store } from '@ngxs/store';
+import { MessagesState } from '../../core/store/state';
+import { Message } from '../../core/store/models';
+import { AddMessage, UpdateMessage, ClearMessages } from '../../core/store/actions';
 
 @Component({
   selector: 'app-message',
@@ -8,10 +14,14 @@ import { FormControl } from '@angular/forms';
 })
 export class MessageComponent implements OnInit {
   message = new FormControl('');
+  newMessageId: number = 0;
+  updatedMessageId!: number;
   isEmojiPickerVisible: boolean = false;
-  messages: any = [];
+  isNewMessage: boolean = false;
 
-  constructor() { }
+  @Select(MessagesState.getMessages) messages!: Observable<Message[]>;
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
 
@@ -21,12 +31,38 @@ export class MessageComponent implements OnInit {
     this.message.setValue(`${this.message.value}${event.emoji.native}`);
   }
 
-  save() {
+  send() {
     this.isEmojiPickerVisible = false;
-    this.messages.push({
-      text: this.message.value,
-      date: new Date()
-    });
+    if (this.message.value !== '') {
+      this.store.dispatch(new AddMessage({
+        id: this.newMessageId,
+        text: this.message.value,
+        date: new Date()
+      }));
+    }
     this.message.setValue('');
+    this.newMessageId++;
+  }
+
+  onEditMessage(event: Message) {
+    this.isNewMessage = true;
+    this.updatedMessageId = event.id;
+    this.message.setValue(event.text);
+  }
+
+  update() {
+    this.isEmojiPickerVisible = false;
+    this.store.dispatch(new UpdateMessage({
+      id: this.updatedMessageId,
+      text: this.message.value,
+      date: new Date(),
+      updated: true
+    }));
+    this.isNewMessage = false;
+    this.message.setValue('');
+  }
+
+  clear() {
+    this.store.dispatch(new ClearMessages());
   }
 }

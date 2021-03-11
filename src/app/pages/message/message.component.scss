@@ -2,17 +2,26 @@
   .card {
     width: 395px;
     height: auto;
-    min-height: 200px;
+    margin-bottom: 25px;
     .mat-card-header-text {
       width: 100%;
       margin: 0;
     }
     .mat-form-field {
       width: 100%;
+      .mat-form-field-infix {
+        textarea {
+          width: calc(100% - 65px);
+        }
+      }
+      .mat-form-field-suffix {
+        position: absolute;
+        top: .75rem;
+        right: .5rem;
+      }
     }
     .mat-card-actions {
-      margin-left: 0;
-      margin-right: 0;
+      margin: 0;
     }
     .mat-form-field-flex {
       &:hover {
