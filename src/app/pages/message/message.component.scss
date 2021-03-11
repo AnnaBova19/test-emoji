@@ -1,8 +1,19 @@
 ::ng-deep {
+  .message-sidenav {
+    position: absolute !important;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .card {
-    width: 395px;
+    width: 350px;
     height: auto;
-    margin-bottom: 25px;
     .mat-card-header-text {
       width: 100%;
       margin: 0;
@@ -33,5 +44,8 @@
     .emoji-mart {
       width: 100% !important;
     }
+  }
+  .messages-wrapper {
+    padding: 20px;
   }
 }

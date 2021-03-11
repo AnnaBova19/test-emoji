@@ -7,6 +7,7 @@ import { MessageComponent } from './message.component';
 import { MessageBlockComponent } from '../../components/message-block/message-block.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,6 +33,7 @@ const routes: Routes = [
     ReactiveFormsModule,
 
     FlexLayoutModule,
+    MatSidenavModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,

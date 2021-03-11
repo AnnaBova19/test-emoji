@@ -1,4 +1,5 @@
 .main_wrapper {
   height: calc(100% - 64px);
-  background-color: #f8f9fa;
+  overflow: auto;
+  padding: 10px;
 }
